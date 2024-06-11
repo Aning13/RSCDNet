@@ -34,11 +34,17 @@ def adjustData(img1, img2, mask):
         img2 (numpy.array): Image B
         mask (numpy.array): mask 
     """
-    onehot=rgb_to_onehot(mask[0],color_dict)
-    onehot=np.reshape(onehot,((1,)+onehot.shape))
-    img1 = img1/255.
-    img2 = img2/255.
-    return(img1, img2, onehot)
+    # Convert the mask from RGB to one-hot encoding
+    onehot = rgb_to_onehot(mask[0], color_dict)
+    
+    # Reshape the one-hot encoded mask to add a new dimension at the beginning
+    onehot = np.reshape(onehot, ((1,) + onehot.shape))
+    
+    # Normalize the images by dividing by 255
+    img1 = img1 / 255.0
+    img2 = img2 / 255.0
+    return img1, img2, onehot
+
   
 
 
